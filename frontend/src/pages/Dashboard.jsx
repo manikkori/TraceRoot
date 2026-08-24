@@ -54,7 +54,7 @@ export function Dashboard() {
           </button>
           <div>
             <h1 className="text-2xl font-bold text-devText flex items-center gap-2">
-              <Activity className="w-6 h-6 text-devAccent" />
+              <img src="/image.png" alt="Logo" className="w-8 h-8 bg-white p-1 rounded-md object-contain" />
               RepoRescue AI
             </h1>
             <p className="text-sm text-devMuted mt-1">

@@ -40,9 +40,11 @@ export function Landing() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#09090b]/80 backdrop-blur-xl transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex justify-between items-center">
           <div className="flex items-center gap-2 font-bold text-lg md:text-xl tracking-tight">
-            <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20">
-              <Activity className="w-4 h-4 md:w-5 md:h-5 text-white" />
-            </div>
+            <img
+              src="/image.png"
+              alt="RepoRescue Logo"
+              className="w-8 h-8 md:w-10 md:h-10 bg-blue-300/80 p-1 rounded-lg shadow-lg shadow-blue-500/20 object-contain"
+            />
             RepoRescue
           </div>
           <div className="flex items-center gap-3 sm:gap-6">
@@ -100,7 +102,6 @@ export function Landing() {
           >
             Start Debugging <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
-
         </div>
 
         {/* The SaaS "Showcase" (Mock Terminal Window) */}
@@ -155,14 +156,16 @@ export function Landing() {
       {/* Feature Grid Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-20 md:pb-32">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-12 md:pt-16 border-t border-white/5">
-          
           <Card className="bg-white/[0.02] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all duration-300 p-6 md:p-8">
             <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
               <Zap className="w-5 h-5 md:w-6 md:h-6" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Lightning Fast Fixes</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+              Lightning Fast Fixes
+            </h3>
             <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
-              Our AI reads your error logs the second you paste them. No waiting around—get the exact solution you need instantly.
+              Our AI reads your error logs the second you paste them. No waiting
+              around—get the exact solution you need instantly.
             </p>
           </Card>
 
@@ -170,9 +173,13 @@ export function Landing() {
             <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
               <Code2 className="w-5 h-5 md:w-6 md:h-6" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Reads Your Actual Code</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+              Reads Your Actual Code
+            </h3>
             <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
-              It doesn't just guess blindly. The AI connects to your GitHub, looks at your specific files, and finds out exactly where the mistake is.
+              It doesn't just guess blindly. The AI connects to your GitHub,
+              looks at your specific files, and finds out exactly where the
+              mistake is.
             </p>
           </Card>
 
@@ -180,12 +187,15 @@ export function Landing() {
             <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
               <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
             </div>
-            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Paste Any Error Log</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+              Paste Any Error Log
+            </h3>
             <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
-              Whether your app crashed on Vercel, Render, AWS, or your own computer, just copy the raw text and paste it here. We'll handle the rest.
+              Whether your app crashed on Vercel, Render, AWS, or your own
+              computer, just copy the raw text and paste it here. We'll handle
+              the rest.
             </p>
           </Card>
-          
         </div>
       </section>
     </div>
