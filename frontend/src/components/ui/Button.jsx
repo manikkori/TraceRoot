@@ -12,7 +12,9 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 bg-neuBg text-neuAccent shadow-neu-flat hover:shadow-neu-pop active:shadow-neu-pressed active:translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 
+        bg-devAccent text-white hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]
+        active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${className}`}
     >
       {children}
     </button>
