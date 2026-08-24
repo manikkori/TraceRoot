@@ -4,17 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        neuBg: "#e0e5ec",
-        neuText: "#4a5568",
-        neuAccent: "#3b82f6",
+        devBg: "#09090b", // Deep Black/Zinc for background
+        devCard: "#18181b", // Slightly lighter dark for cards
+        devBorder: "#27272a", // Subtle border color
+        devText: "#f4f4f5", // Clean white text
+        devMuted: "#a1a1aa", // Gray text for secondary info
+        devAccent: "#3b82f6", // Bright Blue for buttons/links
       },
-      boxShadow: {
-        "neu-flat":
-          "9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5)",
-        "neu-pressed":
-          "inset 6px 6px 10px 0 rgba(163,177,198, 0.7), inset -6px -6px 10px 0 rgba(255,255,255, 0.5)",
-        "neu-pop":
-          "4px 4px 8px rgba(163,177,198,0.5), -4px -4px 8px rgba(255,255,255, 0.8)",
+      backgroundImage: {
+        "grid-pattern":
+          "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%2327272a' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E\")",
       },
     },
   },
