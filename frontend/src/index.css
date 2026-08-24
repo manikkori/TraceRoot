@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neuBg text-neuText font-sans antialiased min-h-screen;
+  @apply bg-devBg text-devText font-sans antialiased min-h-screen bg-grid-pattern;
 }
 
 ::-webkit-scrollbar {
@@ -11,19 +11,19 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #e0e5ec;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a3b1c6;
+  background: #27272a;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8b9bb4;
+  background: #3f3f46;
 }
 
-input:focus,
-textarea:focus {
-  outline: none;
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #fff;
 }
