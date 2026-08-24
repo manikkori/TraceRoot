@@ -1,6 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Activity, Zap, ShieldCheck, Terminal, ArrowRight } from "lucide-react";
+import {
+  Activity,
+  Zap,
+  ShieldCheck,
+  TerminalSquare,
+  ArrowRight,
+  Code2,
+} from "lucide-react";
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 
@@ -24,94 +31,163 @@ export function Landing() {
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-24 py-20 animate-fade-in relative z-10">
-      {/* Background Glow Effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-devAccent/20 blur-[120px] -z-10 rounded-full pointer-events-none"></div>
+    <div className="min-h-screen bg-[#09090b] text-[#f4f4f5] selection:bg-blue-500/30 font-sans overflow-x-hidden relative">
+      {/* Premium Background Effects */}
+      <div className="fixed inset-0 z-0 bg-[url('https://res.cloudinary.com/dntjnq39e/image/upload/v1703144869/grid_ptq1m1.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 pointer-events-none"></div>
+      <div className="absolute top-0 md:top-[-20%] left-1/2 -translate-x-1/2 w-[120%] md:w-[800px] h-[300px] md:h-[500px] bg-blue-600/20 blur-[100px] md:blur-[150px] rounded-full pointer-events-none"></div>
 
-      {/* Hero Section */}
-      <div className="text-center space-y-8 max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-devBorder bg-devCard/50 text-devAccent mb-4">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-devAccent opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+      {/* Glassmorphism Navbar */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#09090b]/80 backdrop-blur-xl transition-all">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex justify-between items-center">
+          <div className="flex items-center gap-2 font-bold text-lg md:text-xl tracking-tight">
+            <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20">
+              <Activity className="w-4 h-4 md:w-5 md:h-5 text-white" />
+            </div>
+            RepoRescue
+          </div>
+          <div className="flex items-center gap-3 sm:gap-6">
+            <a
+              href="https://github.com/manikkori"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors flex items-center gap-2 p-2 sm:p-0"
+            >
+              <GithubIcon className="w-5 h-5 sm:w-4 sm:h-4" />
+              {/* Hide text on mobile, show on sm screens and up */}
+              <span className="hidden sm:inline">Source Code</span>
+            </a>
+            <Button
+              onClick={() => navigate("/dashboard")}
+              className="!px-3 sm:!px-4 !py-1.5 sm:!py-2 !text-xs sm:!text-sm !rounded-md shadow-lg shadow-blue-500/20"
+            >
+              Open App
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Hero Section */}
+      <main className="relative z-10 pt-28 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 max-w-7xl mx-auto text-center flex flex-col items-center">
+        {/* Animated Beta Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6 md:mb-8 animate-fade-in scale-90 md:scale-100">
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
           </span>
-          <span className="text-xs font-semibold tracking-wide uppercase">
-            RepoRescue AI v1.0 Live
+          <span className="text-[10px] md:text-xs font-medium text-gray-300 uppercase tracking-widest">
+            RepoRescue Agent is Online
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-extrabold text-devText leading-tight">
-          Autonomous Debugging <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-            for Modern Teams
+        {/* Massive Hero Typography - Scales from 4xl on mobile to 7xl on desktop */}
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] mb-6 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+          Ship faster. We'll handle <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">
+            the crash logs.
           </span>
         </h1>
 
-        <p className="text-xl text-devMuted max-w-2xl mx-auto leading-relaxed">
-          Paste your crash logs and GitHub repository. Our AI clones your code,
-          analyzes the stack trace, and pinpoints the exact root cause in
-          seconds.
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed mb-8 md:mb-10 px-2">
+          Paste your production error logs and GitHub repo. Our AI autonomously
+          clones, reads, and debugs your codebase in seconds.
         </p>
 
-        <div className="flex justify-center gap-4 pt-6">
+        {/* CTA Buttons - Stack on mobile, side-by-side on larger screens */}
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full justify-center px-4 sm:px-0">
           <Button
             onClick={() => navigate("/dashboard")}
-            className="px-8 py-4 text-lg"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 md:py-4 text-sm md:text-base font-semibold shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(59,130,246,0.5)]"
           >
-            Launch Workspace <ArrowRight className="w-5 h-5" />
+            Start Debugging <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
-          <a
-            href="https://github.com/manikkori"
-            target="_blank"
-            rel="noreferrer"
-            className="px-8 py-4 rounded-lg font-medium transition-all duration-200 border border-devBorder bg-devCard hover:bg-[#27272a] text-devText flex items-center gap-2"
-          >
-            <GithubIcon className="w-5 h-5" /> View Source
-          </a>
+
         </div>
-      </div>
 
-      {/* Features Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-devBorder">
-        <Card className="space-y-4 hover:border-devAccent/50 transition-colors duration-300">
-          <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-devAccent border border-blue-500/20">
-            <Zap className="w-6 h-6" />
+        {/* The SaaS "Showcase" (Mock Terminal Window) */}
+        <div className="w-full max-w-4xl mt-12 md:mt-20 relative animate-fade-in group">
+          <div className="absolute -inset-1 md:-inset-1.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-20 md:opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+          <div className="relative rounded-xl border border-white/10 bg-[#0f0f11] shadow-2xl overflow-hidden text-left">
+            {/* Mac Window Header */}
+            <div className="flex items-center px-3 md:px-4 py-2.5 md:py-3 border-b border-white/5 bg-white/[0.02]">
+              <div className="flex gap-1.5 md:gap-2">
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/80"></div>
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/80"></div>
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80"></div>
+              </div>
+              <div className="mx-auto text-[10px] md:text-xs font-mono text-gray-500">
+                agent-trace.log
+              </div>
+            </div>
+            {/* Terminal Content - Responsive padding and text */}
+            <div className="p-4 md:p-6 font-mono text-xs sm:text-sm md:text-base space-y-3 md:space-y-4 overflow-x-auto">
+              <div className="text-gray-400 whitespace-nowrap">
+                <span className="text-blue-500">❯</span> Initializing RepoRescue
+                autonomous agent...
+              </div>
+              <div className="text-gray-300 whitespace-nowrap">
+                <span className="text-blue-500">❯</span> Fetching repo:{" "}
+                <span className="text-white">github.com/manikkori/app</span>
+              </div>
+              <div className="text-red-400 whitespace-nowrap">
+                <span className="text-red-500">✖</span> Error detected:
+                ReferenceError: express is not defined
+              </div>
+              <div className="text-gray-400 whitespace-nowrap">
+                <span className="text-blue-500">❯</span> Scanning
+                architecture... 6 files analyzed.
+              </div>
+              <div className="text-green-400 flex items-start gap-2 min-w-max">
+                <span className="text-green-500 mt-1">✔</span>
+                <div>
+                  Root cause found in{" "}
+                  <span className="text-white">src/index.js</span> <br />
+                  <span className="text-gray-500 text-[10px] md:text-xs mt-1 block">
+                    Agent generated fix: Added `const express =
+                    require('express');`
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 className="text-lg font-semibold text-devText">
-            Lightning Fast Analysis
-          </h3>
-          <p className="text-devMuted text-sm">
-            Processes massive codebases and complex stack traces in under 5
-            seconds.
-          </p>
-        </Card>
+        </div>
+      </main>
 
-        <Card className="space-y-4 hover:border-devAccent/50 transition-colors duration-300">
-          <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-devAccent border border-blue-500/20">
-            <Activity className="w-6 h-6" />
-          </div>
-          <h3 className="text-lg font-semibold text-devText">
-            Iterative Agent Loop
-          </h3>
-          <p className="text-devMuted text-sm">
-            Clones repositories, navigates directories, and reads specific files
-            dynamically.
-          </p>
-        </Card>
+      {/* Feature Grid Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-20 md:pb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-12 md:pt-16 border-t border-white/5">
+          
+          <Card className="bg-white/[0.02] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all duration-300 p-6 md:p-8">
+            <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
+              <Zap className="w-5 h-5 md:w-6 md:h-6" />
+            </div>
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Lightning Fast Fixes</h3>
+            <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
+              Our AI reads your error logs the second you paste them. No waiting around—get the exact solution you need instantly.
+            </p>
+          </Card>
 
-        <Card className="space-y-4 hover:border-devAccent/50 transition-colors duration-300">
-          <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-devAccent border border-blue-500/20">
-            <ShieldCheck className="w-6 h-6" />
-          </div>
-          <h3 className="text-lg font-semibold text-devText">
-            Production Ready
-          </h3>
-          <p className="text-devMuted text-sm">
-            Built to handle raw deployment logs from Render, Vercel, and AWS
-            seamlessly.
-          </p>
-        </Card>
-      </div>
+          <Card className="bg-white/[0.02] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all duration-300 p-6 md:p-8">
+            <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
+              <Code2 className="w-5 h-5 md:w-6 md:h-6" />
+            </div>
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Reads Your Actual Code</h3>
+            <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
+              It doesn't just guess blindly. The AI connects to your GitHub, looks at your specific files, and finds out exactly where the mistake is.
+            </p>
+          </Card>
+
+          <Card className="bg-white/[0.02] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all duration-300 p-6 md:p-8">
+            <div className="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
+              <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
+            </div>
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Paste Any Error Log</h3>
+            <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
+              Whether your app crashed on Vercel, Render, AWS, or your own computer, just copy the raw text and paste it here. We'll handle the rest.
+            </p>
+          </Card>
+          
+        </div>
+      </section>
     </div>
   );
 }
