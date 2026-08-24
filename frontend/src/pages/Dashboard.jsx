@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Activity, AlertTriangle, CheckCircle, Clock } from "lucide-react";
+import {
+  Activity,
+  AlertTriangle,
+  CheckCircle,
+  Clock,
+  TerminalSquare,
+  GitBranch,
+  ArrowLeft,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
@@ -7,6 +16,7 @@ import { TextArea } from "../components/ui/TextArea";
 import { investigateBug } from "../services/api";
 
 export function Dashboard() {
+  const navigate = useNavigate();
   const [repoUrl, setRepoUrl] = useState("");
   const [errorLog, setErrorLog] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,11 +28,9 @@ export function Dashboard() {
       setError("Please provide both Repository URL and Error Log.");
       return;
     }
-
     setLoading(true);
     setError("");
     setResult(null);
-
     try {
       const data = await investigateBug(repoUrl, errorLog);
       setResult(data);
@@ -34,25 +42,40 @@ export function Dashboard() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-8 py-12">
-      <div className="text-center space-y-2 mb-12">
-        <h1 className="text-4xl font-bold text-neuText flex items-center justify-center gap-3">
-          <Activity className="w-10 h-10 text-neuAccent" />
-          TraceRoot Engine
-        </h1>
-        <p className="text-gray-500">Autonomous Bug Investigation Dashboard</p>
+    <div className="max-w-7xl mx-auto p-6 py-8">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-8 pb-6 border-b border-devBorder">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate("/")}
+            className="p-2 hover:bg-devBorder rounded-lg transition-colors text-devMuted hover:text-devText"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold text-devText flex items-center gap-2">
+              <Activity className="w-6 h-6 text-devAccent" />
+              RepoRescue AI
+            </h1>
+            <p className="text-sm text-devMuted mt-1">
+              Investigation Workspace
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Input Column */}
+        <div className="lg:col-span-5 space-y-6">
           <Card>
-            <h2 className="text-xl font-semibold mb-6 text-neuText">
-              1. Investigation Target
+            <h2 className="text-lg font-semibold mb-6 text-devText flex items-center gap-2">
+              <TerminalSquare className="w-5 h-5 text-devMuted" /> Configure
+              Target
             </h2>
             <div className="space-y-5">
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-500">
-                  GitHub Repository URL
+                <label className="block text-sm font-medium mb-2 text-devMuted flex items-center gap-2">
+                  <GitBranch className="w-4 h-4" /> GitHub URL
                 </label>
                 <Input
                   placeholder="https://github.com/username/repo"
@@ -61,99 +84,108 @@ export function Dashboard() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-500">
-                  Error Log / Stack Trace
+                <label className="block text-sm font-medium mb-2 text-devMuted">
+                  Stack Trace / Crash Log
                 </label>
                 <TextArea
-                  placeholder="Paste your error trace here..."
+                  placeholder="Paste your Render/Vercel error logs here..."
                   value={errorLog}
                   onChange={(e) => setErrorLog(e.target.value)}
-                  rows={10}
+                  rows={8}
                 />
               </div>
               <Button
                 onClick={handleInvestigate}
                 disabled={loading}
-                className="w-full mt-4"
+                className="w-full"
               >
-                {loading ? "Processing Agent Loop..." : "Run Investigation"}
+                {loading ? "Initializing Agent..." : "Start Investigation"}
               </Button>
 
               {error && (
-                <div className="mt-4 p-4 rounded-xl text-red-500 shadow-neu-pressed flex items-start gap-2">
-                  <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-                  <p className="text-sm font-medium">{error}</p>
+                <div className="mt-4 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm">{error}</p>
                 </div>
               )}
             </div>
           </Card>
         </div>
 
-        <div className="space-y-6">
-          <Card className="h-full min-h-[500px]">
-            <h2 className="text-xl font-semibold mb-6 text-neuText">
-              2. Agent Analysis
+        {/* Results Column */}
+        <div className="lg:col-span-7">
+          <Card className="h-full min-h-[500px] flex flex-col bg-[#0f0f11]">
+            <h2 className="text-lg font-semibold mb-6 text-devText flex items-center gap-2">
+              Agent Output
             </h2>
 
             {!result && !loading && (
-              <div className="h-[300px] flex items-center justify-center text-gray-400 font-medium">
-                Enter details and run investigation to see results.
+              <div className="flex-1 flex flex-col items-center justify-center text-devMuted space-y-4">
+                <Activity className="w-12 h-12 opacity-20" />
+                <p className="text-sm">Awaiting investigation parameters...</p>
               </div>
             )}
 
             {loading && (
-              <div className="h-[300px] flex flex-col items-center justify-center text-neuAccent space-y-6">
-                <div className="w-12 h-12 border-4 border-neuBg border-t-neuAccent rounded-full animate-spin shadow-neu-flat"></div>
-                <p className="animate-pulse font-medium">
-                  AI Agent is cloning and reading code...
-                </p>
+              <div className="flex-1 flex flex-col items-center justify-center space-y-6">
+                <div className="relative w-16 h-16">
+                  <div className="absolute inset-0 border-4 border-devBorder rounded-full"></div>
+                  <div className="absolute inset-0 border-4 border-devAccent border-t-transparent rounded-full animate-spin"></div>
+                </div>
+                <div className="text-center space-y-2">
+                  <p className="text-devAccent font-medium animate-pulse">
+                    Cloning repository & analyzing files...
+                  </p>
+                  <p className="text-xs text-devMuted font-mono">
+                    Tracing node modules and imports
+                  </p>
+                </div>
               </div>
             )}
 
             {result && (
-              <div className="space-y-6 animate-fade-in">
-                <div className="p-5 rounded-xl shadow-neu-pressed">
-                  <h3 className="font-bold flex items-center gap-2 text-red-500 mb-2">
-                    <AlertTriangle className="w-5 h-5" /> Root Cause
-                  </h3>
-                  <p className="text-sm text-neuText leading-relaxed">
-                    {result.rootCause}
-                  </p>
+              <div className="space-y-6 animate-fade-in flex-1">
+                {/* Stats Bar */}
+                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-devMuted bg-black/50 p-3 rounded-lg border border-devBorder">
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />{" "}
+                    {(result.investigationTimeMs / 1000).toFixed(2)}s execution
+                  </span>
+                  <span className="opacity-30">|</span>
+                  <span>{result.filesExamined.length} files read</span>
+                  <span className="opacity-30">|</span>
+                  <span>{result.iterations} loop iterations</span>
                 </div>
 
-                <div className="p-5 rounded-xl shadow-neu-pressed">
-                  <h3 className="font-bold flex items-center gap-2 text-neuAccent mb-2">
-                    <Activity className="w-5 h-5" /> Explanation
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold flex items-center gap-2 text-red-400">
+                    <AlertTriangle className="w-4 h-4" /> Root Cause Found
                   </h3>
-                  <p className="text-sm text-neuText leading-relaxed">
+                  <div className="p-4 bg-red-500/5 border border-red-500/10 rounded-lg">
+                    <p className="text-sm text-devText leading-relaxed">
+                      {result.rootCause}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold flex items-center gap-2 text-devAccent">
+                    <Activity className="w-4 h-4" /> Technical Explanation
+                  </h3>
+                  <p className="text-sm text-devMuted leading-relaxed px-1">
                     {result.explanation}
                   </p>
                 </div>
 
-                <div className="p-5 rounded-xl shadow-neu-pressed">
-                  <h3 className="font-bold flex items-center gap-2 text-green-500 mb-2">
-                    <CheckCircle className="w-5 h-5" /> Suggested Fix
+                <div className="space-y-2 pt-2">
+                  <h3 className="text-sm font-semibold flex items-center gap-2 text-green-400">
+                    <CheckCircle className="w-4 h-4" /> Suggested Resolution
                   </h3>
-                  <div className="mt-2 p-3 bg-gray-100 rounded-lg shadow-inner">
-                    <code className="text-sm text-gray-800 break-words">
+                  <div className="p-4 bg-[#1e1e1e] border border-devBorder rounded-lg shadow-inner overflow-x-auto">
+                    <code className="text-sm text-green-300 font-mono whitespace-pre-wrap">
                       {result.suggestedFix}
                     </code>
                   </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mt-6 pt-6 border-t border-gray-300/50">
-                  <span className="flex items-center gap-1 font-medium">
-                    <Clock className="w-4 h-4" />{" "}
-                    {(result.investigationTimeMs / 1000).toFixed(2)}s
-                  </span>
-                  <span>•</span>
-                  <span className="font-medium">
-                    Files read: {result.filesExamined.length}
-                  </span>
-                  <span>•</span>
-                  <span className="font-medium">
-                    Iterations: {result.iterations}
-                  </span>
                 </div>
               </div>
             )}
