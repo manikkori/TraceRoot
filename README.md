@@ -11,6 +11,7 @@ RepoRescue AI is a powerful, autonomous debugging tool that bridges the gap betw
 * **⚡ Lightning Fast Fixes:** Reads your error logs the second you paste them. No waiting around—get the exact solution you need instantly.
 * **🧠 Reads Your Actual Code:** It doesn't just guess blindly. The AI connects to your GitHub, looks at your specific files, and finds out exactly where the mistake is.
 * **☁️ Paste Any Error Log:** Whether your app crashed on Vercel, Render, AWS, or your own computer, just copy the raw text and paste it. We'll handle the rest.
+* **🔒 Secure Workspace:** Integrated with Clerk for a seamless, production-ready authentication experience (Google OAuth) to protect your dashboard.
 * **🎨 Premium SaaS Interface:** Built with a sleek, dark-mode, mobile-responsive UI inspired by top developer tools like Vercel and Linear.
 
 ---
@@ -23,6 +24,7 @@ RepoRescue AI is a powerful, autonomous debugging tool that bridges the gap betw
 * Tailwind CSS (Custom Dark Dev Theme)
 * Lucide React (Icons)
 * React Router DOM (Navigation)
+* Clerk (Authentication)
 
 **Backend (Agent Engine):**
 * Node.js & Express
@@ -42,7 +44,8 @@ GROQ_API_KEY=your_groq_api_key_here
 
 ### Frontend (.env)
 VITE_API_BASE_URL=http://localhost:5000/api
-(For production on Vercel, set this to your hosted backend URL)
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
+(For production on Vercel, set VITE_API_BASE_URL to your hosted backend URL)
 
 ---
 
@@ -81,7 +84,7 @@ npm run dev
 ### Deploying the Frontend (Vercel)
 1. Log into Vercel and import your repository.
 2. Set the Root Directory to frontend.
-3. Add the VITE_API_BASE_URL environment variable and set it to your Render backend URL.
+3. Add the VITE_API_BASE_URL and VITE_CLERK_PUBLISHABLE_KEY in the environment variables section.
 4. Ensure you have the vercel.json file in your frontend root for proper React Router handling.
 5. Deploy!
 
